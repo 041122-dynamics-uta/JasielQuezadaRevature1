@@ -1,0 +1,7 @@
+Tall to short
+The first clue says Weldon is taller than Delia but shorter than Zina 
+So I wrote them in a list in this order Zina, Weldon, and Delia 
+The next clue says Leisha is taller than Benito but shorter than Delia and Weldon
+So I put them at the bottom of the list under Delia in the order Leisha than Benito
+So now I have Zina, Weldon, Delia, Leisha than Benito. The last clue says Benito is not the shortest  
+Which only leaves Charlotte so I put her at the bottom
