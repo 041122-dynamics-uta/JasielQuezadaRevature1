@@ -1,0 +1,16 @@
+C:\Users\Joe\JasielQuezadaRevature2\switchDemo1\bin\Debug\net5.0\switchDemo1.exe
+C:\Users\Joe\JasielQuezadaRevature2\switchDemo1\bin\Debug\net5.0\switchDemo1.deps.json
+C:\Users\Joe\JasielQuezadaRevature2\switchDemo1\bin\Debug\net5.0\switchDemo1.runtimeconfig.json
+C:\Users\Joe\JasielQuezadaRevature2\switchDemo1\bin\Debug\net5.0\switchDemo1.runtimeconfig.dev.json
+C:\Users\Joe\JasielQuezadaRevature2\switchDemo1\bin\Debug\net5.0\switchDemo1.dll
+C:\Users\Joe\JasielQuezadaRevature2\switchDemo1\bin\Debug\net5.0\switchDemo1.pdb
+C:\Users\Joe\JasielQuezadaRevature2\switchDemo1\obj\Debug\net5.0\switchDemo1.csproj.AssemblyReference.cache
+C:\Users\Joe\JasielQuezadaRevature2\switchDemo1\obj\Debug\net5.0\switchDemo1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Joe\JasielQuezadaRevature2\switchDemo1\obj\Debug\net5.0\switchDemo1.AssemblyInfoInputs.cache
+C:\Users\Joe\JasielQuezadaRevature2\switchDemo1\obj\Debug\net5.0\switchDemo1.AssemblyInfo.cs
+C:\Users\Joe\JasielQuezadaRevature2\switchDemo1\obj\Debug\net5.0\switchDemo1.csproj.CoreCompileInputs.cache
+C:\Users\Joe\JasielQuezadaRevature2\switchDemo1\obj\Debug\net5.0\switchDemo1.dll
+C:\Users\Joe\JasielQuezadaRevature2\switchDemo1\obj\Debug\net5.0\refint\switchDemo1.dll
+C:\Users\Joe\JasielQuezadaRevature2\switchDemo1\obj\Debug\net5.0\switchDemo1.pdb
+C:\Users\Joe\JasielQuezadaRevature2\switchDemo1\obj\Debug\net5.0\switchDemo1.genruntimeconfig.cache
+C:\Users\Joe\JasielQuezadaRevature2\switchDemo1\obj\Debug\net5.0\ref\switchDemo1.dll
