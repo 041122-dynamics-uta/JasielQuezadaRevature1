@@ -1,15 +1,72 @@
 #!/usr/bin/bash
 
 echo Welcome to calculator friend!
+echo What is you name?
+read name
+echo
+echo Hello "$name"
+echo
+read
 echo Please choose a function
 
 num1=$1
 num2=$2
 
+#functions
+Add()
+       {
+    echo You chose addition
+    echo Enter your first number
+    read num1
+    echo Enter your second number
+    read num2
+    echo "Press enter for answers"
+    read
+    echo The sum of $num1 and $num2 is $((num1 + num2))
+    echo
+
+      }
+Subtract()
+            {
+    echo You chose substraction
+    echo Enter your first number
+    read num1
+    echo Enter your second number
+    read num2
+    echo "Press enter for answers"
+    read
+    echo The difference of $num1 and $num2 is $((num1 - num2))
+    echo
+            }
+Multiply()
+        {
+    echo You chose to multiply
+    echo Pleae enter your first number
+    read num1
+    echo Pleae enter your second number
+    read num2
+    echo "Press enter for answers"
+    read
+    echo The differemce of $num1 and $num2 is $((num1 * num2))
+    echo
+        }
+Divide()
+        {
+    echo You chose division
+    echo Please enter your first number
+    read num1
+    echo Please enter your second number
+    read num2
+    echo "Press enter for answers"
+    read
+    echo The difference of $num1 and $num2 is $((num1 / num2))
+    echo
+        }
+#offer options
 if [ $# == 0 ] ; then
 while true
 do
-#offer options
+
     echo 1. Addition
     echo 2. Subtraction
     echo 3. Multiplication
@@ -21,50 +78,22 @@ do
  #get option and solve
  #ADD
  if [ $option == 1 ] ; then
-    echo You chose addition             
-    echo Enter your first number
-    read num1
-    echo Enter your second number
-    read num2  
-    echo "Press enter for answers"
-    read 
-    echo The sum of $num1 and $num2 is $((num1 + num2)) 
+    Add 
     echo
 
 #Subtract
  elif [ $option == 2 ] ; then
-    echo You chose substraction 
-    echo Enter your first number
-    read num1
-    echo Enter your second number
-    read num2
-    echo "Press enter for answers"
-    read 
-    echo The difference of $num1 and $num2 is $((num1 - num2)) 
+    Subtract 
     echo
 
  #multiply
  elif [ $option == 3 ] ; then
-    echo You chose to multiply 
-    echo Pleae enter your first number
-    read num1
-    echo Pleae enter your second number
-    read num2
-    echo "Press enter for answers"
-    read 
-    echo The differemce of $num1 and $num2 is $((num1 * num2))
+    Multiply
     echo
  
  #divide
  elif [ $option == 4 ] ; then
-    echo You chose division
-    echo Please enter your first number
-    read num1
-    echo Please enter your second number
-    read num2
-    echo "Press enter for answers"
-    read 
-    echo The difference of $num1 and $num2 is $((num1 / num2)) 
+    Divide 
     echo
  #exit   
  elif [ $option == 5 ] ; then
@@ -73,28 +102,8 @@ do
     echo 
     echo Invalid option.. Please try again
     echo
-end
+
     fi
 done 
 fi
-        add() 
-	    { results=$((num1 + num2))
-	    end
-	}
-	subtract()
-		{ results=$((num1 - num2))
-	    end
-	}
-	multiply() 
-		{ results=$((num1 * num2))
-	    end	
-	}		
-	divide()
-	        { results=$((num1 / num2))
-		end
 
-        }
-else
-    echo Invalid choice    
-
-fi
