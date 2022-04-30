@@ -1,4 +1,5 @@
-
+﻿using System;
+namespace catsAndMouse;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections;
@@ -57,4 +58,3 @@ class Solution {
         textWriter.Close();
     }
 }
-

@@ -1,3 +1,5 @@
+﻿using System;
+namespace salesByMatch;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections;
@@ -66,4 +68,3 @@ class Solution
         textWriter.Close();
     }
 }
-
