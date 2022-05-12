@@ -16,21 +16,22 @@ CREATE TABLE Customer (
     [PostalCode] NVARCHAR(10),
     [Phone] NVARCHAR(24),
     [Email] NVARCHAR(60) NOT NULL,
-    [Password] NVARCHAR(40) NOT NULL, 
-    CONSTRAINT [PK_Customer] PRIMARY KEY CLUSTERED ([CustomerId])
+    [Password] NVARCHAR(40) NOT NULL,
 );
-GO
+
 CREATE TABLE Product (
     [ProductId] int IDENTITY(1, 1) Primary Key,
+    [StoreID] INT NOT NULL,
     [Name] NVARCHAR(200) NOT NULL,
     [Color] NVARCHAR(50),
     [Size] NVARCHAR(50),
-    [Description] NVARCHAR(300) ,
-    [StoreID] INT NOT NULL,
-    [UnitPrice] NUMERIC(10,5) NOT NULL,
-    CONSTRAINT [PK_Product] PRIMARY KEY CLUSTERED ([ProductId])
+    [Description] NVARCHAR(300),
+    [UnitPrice] INT NOT NULL,
+    [Quantity] INT NOT NULL,
 );
-GO 
+ALTER TABLE Product
+ADD FOREIGN KEY (StoreID) REFERENCES Store(StoreID);
+
 CREATE TABLE Store (
     [StoreId] int IDENTITY(10, 10) Primary Key,
     [Address] NVARCHAR(70),
@@ -39,54 +40,36 @@ CREATE TABLE Store (
     [PostalCode] NVARCHAR(10),
     [Phone] NVARCHAR(24),
     [Email] NVARCHAR(60) NOT NULL,
-    CONSTRAINT [PK_Store] PRIMARY KEY CLUSTERED ([StoreId])
 ); 
-GO
-CREATE TABLE Invoice (
-    [InvoiceId] int IDENTITY(10, 1) Primary Key,
-    [CustomerId] INT NOT NULL,
-    [InvoiceDate] DATETIME NOT NULL,
-    [BillingAddress] NVARCHAR(70),
-    [BillingCity] NVARCHAR(40),
-    [BillingState] NVARCHAR(40),
-    [BillingCountry] NVARCHAR(40),
-    [BillingPostalCode] NVARCHAR(10),
-    [Total] NUMERIC(10,2) NOT NULL,
-    DateCreated DATETIME2 not null DEFAULT(GETDATE())
-    CONSTRAINT [PK_Invoice] PRIMARY KEY CLUSTERED ([InvoiceId])
+--store & product junction for inventory
+CREATE TABLE Inventory (
+    [InventoryId] int IDENTITY(10, 1) Primary Key,
+    [InventoryNumber] int NOT NULL,
+    [ProductId] int FOREIGN KEY REFERENCES Product(ProductId),
+    [StoreId] int FOREIGN KEY REFERENCES Store(StoreId),
+    DateCreated DATETIME not null DEFAULT(GETDATE())
 );
-GO
-CREATE TABLE _InvoiceLine (
-    [InvoiceLineId] int IDENTITY(1, 1) Primary Key,
-    [InvoiceId] INT NOT NULL,
-    [UnitPrice] NUMERIC(15,2) NOT NULL,
-    [Quantity] INT NOT NULL,
-    CONSTRAINT [PK_InvoiceLine] PRIMARY KEY CLUSTERED ([InvoiceLineId])
-);
-GO
---Create Foreign Keys
-ALTER TABLE [Customer] ADD CONSTRAINT [FK_CustomerId]
-FOREIGN KEY ([CustomerId]) REFERENCES [Customer] ([CustomerId]) ON DELETE NO ACTION ON UPDATE NO ACTION;
-    GO
-ALTER TABLE [Product] ADD CONSTRAINT [FK_ProductId]
-FOREIGN KEY ([ProductId]) REFERENCES [Product] ([ProductId]) ON DELETE NO ACTION ON UPDATE NO ACTION;
-    GO
-ALTER TABLE [Store] ADD CONSTRAINT [FK_StoreId]
-FOREIGN KEY ([StoreId]) REFERENCES [Store] ([StoreId]) ON DELETE NO ACTION ON UPDATE NO ACTION;
-    GO
-ALTER TABLE [Invoice] ADD CONSTRAINT [FK_InvoiceId]
-FOREIGN KEY ([InvoiceId]) REFERENCES [Invoice] ([InvoiceId]) ON DELETE NO ACTION ON UPDATE NO ACTION;
-    GO
-ALTER TABLE [InvoiceLine] ADD CONSTRAINT [FK_InvoiceLineId]
-FOREIGN KEY ([InvoiceLineId]) REFERENCES [InvoiceLine] ([InvoiceLineId]) ON DELETE NO ACTION ON UPDATE NO ACTION;
-    GO
 
+CREATE TABLE Orders (
+    [OrderId] int IDENTITY(1, 1) Primary Key,
+    [CustomerId] int FOREIGN KEY REFERENCES Customer(CustomerId),
+    [ProductId] int FOREIGN KEY REFERENCES Product(ProductId),
+    [OrderDate] DATETIME NOT NULL,
+    [Total] INT NOT NULL,
+);
 --Create Procedures
-CREATE PROCEDURE Customer_GetAll
+CREATE PROCEDURE Customer_GetOrder
 AS
 BEGIN
     SELECT id, FirstName, LastName
     FROM customerID
 END
+--join store and product for inventory
+--iNVENTORY JOIN
+SELECT Store.StoreId, Product.ProductId
+FROM Store LEFT JOIN Product
+ON  
 
---Populate Tables
+SELECT Orders.OrderID, Customers.CustomerId, Product.ProductId
+FROM Orders
+INNER JOIN Customers ON Orders.CustomerID=Customers.CustomerID;
