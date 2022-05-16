@@ -21,7 +21,7 @@ CREATE TABLE Customer (
 
 CREATE TABLE Product (
     [ProductId] int IDENTITY(1, 1) Primary Key,
-    [StoreID] INT NOT NULL,
+    [StoreId] int FOREIGN KEY REFERENCES Store(StoreId),
     [Name] NVARCHAR(200) NOT NULL,
     [Color] NVARCHAR(50),
     [Size] NVARCHAR(50),
@@ -29,7 +29,7 @@ CREATE TABLE Product (
     [UnitPrice] INT NOT NULL,
     [Quantity] INT NOT NULL,
 );
-ALTER TABLE Product
+ALTER TABLE OrderHistory
 ADD FOREIGN KEY (StoreID) REFERENCES Store(StoreID);
 
 CREATE TABLE Store (
@@ -41,7 +41,7 @@ CREATE TABLE Store (
     [Phone] NVARCHAR(24),
     [Email] NVARCHAR(60) NOT NULL,
 ); 
---store & product junction for inventory
+--store & product  for inventory
 CREATE TABLE Inventory (
     [InventoryId] int IDENTITY(10, 1) Primary Key,
     [InventoryNumber] int NOT NULL,
@@ -53,6 +53,18 @@ CREATE TABLE Inventory (
 CREATE TABLE Orders (
     [OrderId] int IDENTITY(1, 1) Primary Key,
     [CustomerId] int FOREIGN KEY REFERENCES Customer(CustomerId),
+    [ProductId] int FOREIGN KEY REFERENCES Product(ProductId),
+    [OrderDate] DATETIME NOT NULL,
+    [Total] INT NOT NULL,
+);
+CREATE TABLE Order_History (
+    [Order_HistoryId] int Primary Key,
+    [OrderId] int FOREIGN KEY REFERENCES Order(OrderId),
+    [OrderDate] DATETIME NOT NULL,
+    [Total] INT NOT NULL,
+);
+CREATE TABLE Deleted_Cart (
+    [Deleted_cartId] int Primary Key,
     [ProductId] int FOREIGN KEY REFERENCES Product(ProductId),
     [OrderDate] DATETIME NOT NULL,
     [Total] INT NOT NULL,

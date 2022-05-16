@@ -50,28 +50,26 @@ VALUES(20, 'Iron Man Helmet','Red & Gold','One Size','Light-Up Iron Man helmet w
 INSERT INTO Product ([StoreID], [Name], [Color], [Size], [Description], [UnitPrice], [Quantity]) 
 VALUES(20, 'Thor Pajamas','Red','One Size','Two piece top and pants pajama set', 20, 30);
 
---Order_Details INSERTS (11)
-INSERT INTO Order_Details ([CustomerId], [ProductId], [OrderDate], [BillingAddress], [Billing[City]], [BillingCountry], [Total]) 
-VALUES (36, '2022/5/5', 'Tauentzienstraße 8', 'Berlin', 'Germany', '10789', 17.98);
-INSERT INTO Order_Details ([CustomerId], [ProductId], [OrderDate], [BillingAddress], [Billing[City]], [BillingCountry], [Total]) 
-VALUES (38, '2022/5/6', 'Barbarossastraße 19', 'Berlin', 'Germany', '10779', 35.96);
-INSERT INTO Order_Details ([CustomerId], [ProductId], [OrderDate], [BillingAddress], [Billing[City]], [BillingCountry], [Total]) 
-VALUES (15, '2022/6/5', '700 W Pender Street', 'Vancouver', 'BC', 'Canada', 'V6C 1G8', 17.98);
-INSERT INTO Order_Details ([CustomerId], [ProductId], [OrderDate], [BillingAddress], [Billing[City]], [BillingCountry], [Total]) 
-VALUES (27, '2022/6/10', '1033  Park Ave', 'Tucson', 'AZ', 'USA', '85719', 550.91);
-INSERT INTO Order_Details ([CustomerId], [ProductId], [OrderDate], [BillingAddress], [Billing[City]], [BillingCountry], [Total]) 
-VALUES (55, '2022/7/7', '421 Bourke Street', 'Sidney', 'NSW', 'Australia', '2010', 35.96);
-INSERT INTO Order_Details ([CustomerId], [ProductId], [OrderDate], [BillingAddress], [Billing[City]], [BillingCountry], [Total]) 
-VALUES (23, '2022/9/11', '69 Salem Street', 'Boston', 'MA', 'USA', '2113', 80.91);
-INSERT INTO Order_Details ([CustomerId], [ProductId], [OrderDate], [BillingAddress], [Billing[City]], [BillingCountry], [Total]) 
-VALUES (26, '2022/11/7', '2211 W Berry Street', 'Fort Worth', 'TX', 'USA', '76110', 100.98);  
-INSERT INTO Order_Details ([CustomerId], [ProductId], [OrderDate], [BillingAddress], [Billing[City]], [BillingCountry], [Total]) 
-VALUES (28, '2022/11/7', '302 S 700 E', 'Salt Lake [City]', 'UT', 'USA', '84102', 60.98);
-INSERT INTO Order_Details ([CustomerId], [ProductId], [OrderDate], [BillingAddress], [Billing[City]], [BillingCountry], [Total]) 
-VALUES (28, '2022/11/7', '302 S 700 E', 'Salt Lake [City]', 'UT', 'USA', '84102', 55.98);
-INSERT INTO Order_Details ([CustomerId], [ProductId], [OrderDate], [BillingAddress], [Billing[City]], [BillingCountry], [Total]) 
-VALUES (47, '2022/1/9', 'Via Degli Scipioni, 43', 'Rome', 'RM', 'Italy', '00192', 300.96);
-INSERT INTO Order_Details ([CustomerId], [ProductId], [OrderDate], [BillingAddress], [Billing[City]], [BillingCountry], [Total]) 
-VALUES (24, '2010/3/21', '162 E Superior Street', 'Chicago', 'IL', 'USA', '60611', 150.86);
-
-
+- Orders INSERTS (11)
+INSERT INTO Orders ([CustomerId], [ProductId], [OrderDate],[Total]) 
+VALUES (36, 2, '2022/5/5', 17.98);
+INSERT INTO Orders ([CustomerId], [ProductId], [OrderDate], [Total]) 
+VALUES (38, 3, '2022/5/6', 35.96);
+INSERT INTO Orders ([CustomerId], [ProductId],  [OrderDate], [Total]) 
+VALUES (15, 3, '2022/6/5', 17.98);
+INSERT INTO Orders ([CustomerId], [ProductId], [OrderDate], [Total]) 
+VALUES (27, 9, '2022/6/10', 550.91);
+INSERT INTO Orders ([CustomerId], [ProductId], [OrderDate], [Total]) 
+VALUES (55, 6, '2022/7/7', 35.96);
+INSERT INTO Orders ([CustomerId], [ProductId], [OrderDate], [Total]) 
+VALUES (23, 7, '2022/9/11', 80.91);
+INSERT INTO Orders ([CustomerId], [ProductId], [OrderDate], [Total]) 
+VALUES (26, 10, '2022/11/7', 400.98);  
+INSERT INTO Orders ([CustomerId], [ProductId], [OrderDate], [Total]) 
+VALUES (28, 11, '2022/11/7', 60.98);
+INSERT INTO Orders ([CustomerId], [ProductId], [OrderDate], [Total]) 
+VALUES (28, 10,  '2022/11/7', 55.98);
+INSERT INTO Orders ([CustomerId], [ProductId], [OrderDate], [Total]) 
+VALUES (47, 8, '2022/1/9', 400.96);
+INSERT INTO Orders ([CustomerId], [ProductId], [OrderDate],  [Total]) 
+VALUES (24, 11, '2010/3/21', 150.86);
