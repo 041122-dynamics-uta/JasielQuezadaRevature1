@@ -1,49 +1,50 @@
 ﻿using System.Data.SqlClient;
 using storeAppModel;
 using storeAppRepo;
-
 namespace storeAppBusiness;
+
 public class storeAppBusinessClass
 {     //inject the dependency into the class
     public storeAppRepoClass repo { get; set; }
-    
     public storeAppBusinessClass(storeAppRepoClass r)
     {
         this.repo = r;
     }
-    
-    public Customer newCustomer(string FirstName, string LastName, string address, string email, string password)
+    //register customer
+    public void newCustomer()
+    //public Customer newCustomer(string FirstName, string LastName, string address, string email, string password)
     {
         Customer c = repo.newCustomer(FirstName, LastName, address, email, password);//make query
         return c;
     }
-    public Orders newOrders(int CustomerId, int ProductId, int Total)
+    //customer login with email and password
+    public void customerLogin()
     {
-        Orders or = repo.newOrders(CustomerId, ProductId, Total);//make query
-        return or;
+
     }
-    
-    public Product newProduct(int StoreId, string Name, string Color, string Size, string Description, int UnitPrice, int Quantity)
+    //view product from a store
+    public List<Product> ProductList(StoreId, Name, Color, Size, Description, UnitPrice, Quantity)
     {
         
-        Product p = repo.newProduct(StoreId, Name, Color, Size, Description, UnitPrice, Quantity);//make query
-        return p;
     }
-    // public Inventory InventoryList(int InventoryNumber, int ProductId, int StoreId)
+    public List<Order> OrderList(CustomerId, ProductId, Total)
+    {
+
+    }
+    //method dictionary of product id/quantity + customer id and storeid
+    public void SubmitOrder()
+    {
+
+    }
+    //public Orders newOrders(int CustomerId, int ProductId, int Total)
     // {
-    //     Inventory I = repo.Inventory(InventoryNumber, ProductId, StoreId);
-    //     return I;
+    //     Orders or = repo.newOrders(CustomerId, ProductId, Total);//make query
+    //     return or;
     // }
     // public List<Inventory> InventoryList()
     // {
     //     List<Inventory> I = repo.InventoryList();
     //     return I;
-    // }
-    // public List<Order_History> Order_HistoryList(int Order_HistoryId)
-    // {
-    //     List<Order_History> oh = repo.Order_History();
-
-    //     return oh;
     // }
     // public List<Product> ProductList()
     // {
@@ -51,6 +52,7 @@ public class storeAppBusinessClass
     //     return p;
     // }
     // public List<Store> StoreList()
+
     // {
     //     List<Store> s = repo.StoreList();
     //     return s;

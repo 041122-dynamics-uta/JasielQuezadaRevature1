@@ -22,10 +22,10 @@ INSERT INTO [Customer] ([FirstName], [LastName], [Address], [City], [State], [Co
 VALUES ('Dan', 'Miller', '541 Del Medio Avenue', 'Mountain View', 'CA', 'USA', '94040-111', '+1 (650) 644-3358', 'dmiller@comcast.com', 'dgsdfg');
 
 --STORE INSERTS (2)
-INSERT INTO Store ([StoreID], [Address], [City], [State], [PostalCode], [Phone], [Email]) 
-VALUES(10, '123 Marvel Avenue', 'Atlanta', 'Georgia', '30145', '40440140102', 'MarvelMerch@Gmail.com');
-INSERT INTO Store ([StoreID], [Address], [City], [State], [PostalCode], [Phone], [Email]) 
-VALUES(20, '321 Marvel Street', 'Los Angeles', 'California', '90210', '9129329121', 'MarvelMerch@Gmail.com');
+INSERT INTO Store ([StoreID], [Name], [Location]) 
+VALUES(10, 'Marvel Merch Avenue', 'Atlanta, Georgia');
+INSERT INTO Store ([StoreID], [Name], [Location]) 
+VALUES(20, 'Marvel Merch Street', 'Los Angeles, California');
 
 --PRODUCT INSERTS (10)
 INSERT INTO Product ([StoreID], [Name], [Color], [Size], [Description], [UnitPrice], [Quantity]) 

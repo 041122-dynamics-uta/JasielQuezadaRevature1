@@ -1,11 +1,10 @@
 namespace storeAppModel
 {
-    public class Orders
+    public Guid Orders
     {
-        public int OrdersId { get; set; } = 0;
-        public int CustomerId { get; set; } = 0;
-        public int ProductId { get; set; } = 0;
-        public int Total { get; set; } = 0;
-        public DateTime DateCreated { get; set; } = DateTime.Now;
+        public Guid OrdersId { get; set; } 
+        public Dictionary<Product, int> Product { get; set;} = new Dictionary<Product, int> ();
+        public Customer Customer { get; set; } = new Customer();
+        public Store Store { get; set;} = new Store();
     }
 }
