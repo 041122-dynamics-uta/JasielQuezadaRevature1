@@ -21,10 +21,6 @@ CREATE TABLE Product (
     [UnitPrice] INT NOT NULL,
     [Quantity] INT NOT NULL,
 );
-ALTER TABLE OrderHistory
-ADD FOREIGN KEY (StoreID) REFERENCES Store(StoreID);
- [StoreId] int FOREIGN KEY REFERENCES Store(StoreId),
-
 CREATE TABLE Store (
     [StoreId] int IDENTITY(10, 10) Primary Key,
     [Name] NVARCHAR(24),
@@ -33,31 +29,33 @@ CREATE TABLE Store (
 --store & product  for inventory
 CREATE TABLE Inventory (
     [InventoryId] int IDENTITY(10, 1) Primary Key,
-    [InventoryNumber] int NOT NULL,
     [ProductId] int FOREIGN KEY REFERENCES Product(ProductId),
     [StoreId] int FOREIGN KEY REFERENCES Store(StoreId),
-    DateCreated DATETIME not null DEFAULT(GETDATE())
 );
 
 CREATE TABLE Orders (
     [OrderId] int IDENTITY(1, 1) Primary Key,
     [CustomerId] int FOREIGN KEY REFERENCES Customer(CustomerId),
     [ProductId] int FOREIGN KEY REFERENCES Product(ProductId),
-    [OrderDate] DATETIME NOT NULL,
-    [Total] INT NOT NULL,
+    [StoreId] int FOREIGN KEY REFERENCES Store(StoreId),
 );
-CREATE TABLE Order_History (
-    [Order_HistoryId] int Primary Key,
-    [OrderId] int FOREIGN KEY REFERENCES Order(OrderId),
-    [OrderDate] DATETIME NOT NULL,
-    [Total] INT NOT NULL,
-);
-CREATE TABLE Deleted_Cart (
-    [Deleted_cartId] int Primary Key,
-    [ProductId] int FOREIGN KEY REFERENCES Product(ProductId),
-    [OrderDate] DATETIME NOT NULL,
-    [Total] INT NOT NULL,
-);
+
+
+ALTER TABLE OrderHistory
+ADD FOREIGN KEY (StoreID) REFERENCES Store(StoreID);
+ [StoreId] int FOREIGN KEY REFERENCES Store(StoreId),
+-- CREATE TABLE Order_History (
+--     [Order_HistoryId] int Primary Key,
+--     [OrderId] int FOREIGN KEY REFERENCES Order(OrderId),
+--     [OrderDate] DATETIME NOT NULL,
+--     [Total] INT NOT NULL,
+-- );
+-- CREATE TABLE Deleted_Cart (
+--     [Deleted_cartId] int Primary Key,
+--     [ProductId] int FOREIGN KEY REFERENCES Product(ProductId),
+--     [OrderDate] DATETIME NOT NULL,
+--     [Total] INT NOT NULL,
+-- );
 --Create Procedures
 CREATE PROCEDURE Customer_GetOrder
 AS

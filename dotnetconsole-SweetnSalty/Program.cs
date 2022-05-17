@@ -15,35 +15,55 @@ namespace dotnetconsole_SweetnSalty
          int num2 = Convert.ToInt32(Console.ReadLine());
          Console.WriteLine("How many numbers per line would you like?");
          int howmany = Convert.ToInt32(Console.ReadLine());
-        
-            IEnumerable<int> numbers = Enumerable.Range(num1, range);
-            
-            for (int i = 1; i <= 10; i++)
+         //variables
+         int range = num2 - num1;//finding the range Alec helped with this
+         IEnumerable<int> all = Enumerable.Range(num1, range);//enumerable allows you to use a range method
+         int check = 0;//when to make new line
+         //Used to get the total number of instances
+         int sw = 0; 
+         int st = 0;
+         int swst = 0;
+
+        foreach(int s in all)
+        {
+            if(check == howmany)
             {
-            
-            if ( i % 3 == 0) //divisible by 3
-            {
-            Console.WriteLine("Sweet");
+                Console.WriteLine();
+                check = 0;
             }
-            else if (i % 5 == 0)//divisble by 5
+            if (s % 3 == 0 && s % 5 == 0)//if divisible by 3 and 5
             {
-            Console.WriteLine("Salty");
-            }  
-            else if (i % 3 == 0 && i % 5 == 0)//if divisible by 3 and 5
+                Console.WriteLine("Sweet'nSalty");
+                swst++;
+            } 
+            else if ( s % 3 == 0) //divisible by 3
             {
-            Console.WriteLine("Sweet'nSalty");
+                Console.WriteLine("Sweet");
+                sw++;
+            }
+            else if (s % 5 == 0)//divisble by 5
+            {
+                Console.WriteLine("Salty");
+                st++;
             }            
             else
             {
-            Console.WriteLine(i);//just print number
-            }                 
+            Console.WriteLine($"{s}");//just print number
+            }
+            check++;                 
         }
+        //results
+        Console.WriteLine();
+        Console.WriteLine($"The Number of Sweets is {sw}");
+        Console.WriteLine($"The Number of Salty's is {st}");
+        Console.WriteLine($"The Number of Sweet&Salty is {swst}");
+        Console.WriteLine();
      
        
         }//end of static void
-    }//end of class
-     
+    }//end of class   
 }//end of namespace
+
 // Get the start and stop numbers (the range) from the user.
 // Get the quantity of numbers you will print per line from the user.
 // Print the numbers in groups of what the user says per line with one space separating each number.
@@ -58,34 +78,5 @@ namespace dotnetconsole_SweetnSalty
 // 'Sweet', 'Salty', and 'Sweet'nSalty' are three separate groups, 
 //so "Sweet’nSalty" does not increment "Sweet" or "Salty" (and vice versa).
 // Include verbose commentary in the source code to tell me what each few lines are doing.
-
-
-
-
-
-
-// {
-//             int[] allNumbers = Enumerable.Range(1, 20).ToArray();
-//             GetNumbers(ref allNumbers, new int[] { 16, 17 });
-//             }
-//             public class Range
-//             {
-//             IEnumerable<int> range = Enumerable.Range(1, 20);
-//              int Start {get;set;}
-//              int End {get;set;}
-//             }
-
-
-// void findMultiples(int n){
-//   for(int i = 0; i <= n; i++)
-//     if(i % 3 == 0 && i % 5 == 0)
-//       cout << i << endl;
-
-//   return 0;
-//   public readonly struct Range
-//     {
-//         public Range(System.Index start, System.Index end);
-//         public static Range All { get; }
-//     }
 
 
