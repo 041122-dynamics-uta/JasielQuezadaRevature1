@@ -58,7 +58,7 @@ namespace storeAppRepo
             return or;
         }
 
-        public Product DboToProduct(SqlDataReader read)
+        internal Product DboToProduct(SqlDataReader read)
         {
             Product p = new Product
             {

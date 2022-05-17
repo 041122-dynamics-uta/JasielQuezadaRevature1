@@ -10,36 +10,25 @@ CREATE TABLE Customer (
     [FirstName] NVARCHAR(40) NOT NULL,
     [LastName] NVARCHAR(20) NOT NULL,
     [Address] NVARCHAR(70),
-    [City] NVARCHAR(40),
-    [State] NVARCHAR(40),
-    [Country] NVARCHAR(40),
-    [PostalCode] NVARCHAR(10),
-    [Phone] NVARCHAR(24),
     [Email] NVARCHAR(60) NOT NULL,
     [Password] NVARCHAR(40) NOT NULL,
 );
 
 CREATE TABLE Product (
     [ProductId] int IDENTITY(1, 1) Primary Key,
-    [StoreId] int FOREIGN KEY REFERENCES Store(StoreId),
     [Name] NVARCHAR(200) NOT NULL,
-    [Color] NVARCHAR(50),
-    [Size] NVARCHAR(50),
     [Description] NVARCHAR(300),
     [UnitPrice] INT NOT NULL,
     [Quantity] INT NOT NULL,
 );
 ALTER TABLE OrderHistory
 ADD FOREIGN KEY (StoreID) REFERENCES Store(StoreID);
+ [StoreId] int FOREIGN KEY REFERENCES Store(StoreId),
 
 CREATE TABLE Store (
     [StoreId] int IDENTITY(10, 10) Primary Key,
-    [Address] NVARCHAR(70),
-    [City] NVARCHAR(40),
-    [State] NVARCHAR(40),
-    [PostalCode] NVARCHAR(10),
-    [Phone] NVARCHAR(24),
-    [Email] NVARCHAR(60) NOT NULL,
+    [Name] NVARCHAR(24),
+    [Location] NVARCHAR(70),  
 ); 
 --store & product  for inventory
 CREATE TABLE Inventory (
