@@ -16,6 +16,7 @@ namespace p1StoreApp
             storeAppBusinessClass sbc = new storeAppBusinessClass(src);
             Customer newCustomer = new Customer();
             Product newProduct = new Product();
+            Dictionary<Product, int> dict = new Dictionary<Product, int>();
             bool registerloop = true;
             while (registerloop == true){ //Welcome and login/register loop (do while loop)
             Console.WriteLine("Welcome To Marvel Merch Store");
