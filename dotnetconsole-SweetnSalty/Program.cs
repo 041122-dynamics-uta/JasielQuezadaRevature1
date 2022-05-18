@@ -18,7 +18,7 @@ namespace dotnetconsole_SweetnSalty
          //variables
          int range = num2 - num1;//finding the range Alec helped with this
          IEnumerable<int> all = Enumerable.Range(num1, range);//enumerable allows you to use a range method
-         int check = 0;//when to make new line
+         int check = 0;//keep count of how many
          //Used to get the total number of instances
          int sw = 0; 
          int st = 0;

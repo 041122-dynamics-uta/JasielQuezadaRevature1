@@ -6,56 +6,51 @@
 
 --Create Tables
 CREATE TABLE Customer (
-	[CustomerId] INT IDENTITY(10, 1) Primary Key,
+	[CustomerId] INT IDENTITY(1, 1) Primary Key,
     [FirstName] NVARCHAR(40) NOT NULL,
     [LastName] NVARCHAR(20) NOT NULL,
     [Address] NVARCHAR(70),
     [Email] NVARCHAR(60) NOT NULL,
-    [Password] NVARCHAR(40) NOT NULL,
+    [Password] NVARCHAR(30) NOT NULL,
+    [DateCreated] DATETIME NOT NULL DEFAULT(GETDATE()),
 );
-
 CREATE TABLE Product (
     [ProductId] int IDENTITY(1, 1) Primary Key,
-    [Name] NVARCHAR(200) NOT NULL,
+    [ProductName] NVARCHAR(200) NOT NULL,
     [Description] NVARCHAR(300),
-    [UnitPrice] INT NOT NULL,
-    [Quantity] INT NOT NULL,
+    [Price] DECIMAL[5,2] NOT NULL,
+    [Quantity] INT NOT NULL DEFAULT(1),
+    [DateCreated] DATETIME NOT NULL DEFAULT(GETDATE()),
 );
 CREATE TABLE Store (
-    [StoreId] int IDENTITY(10, 10) Primary Key,
+    [StoreId] int IDENTITY(10, 1) Primary Key,
     [Name] NVARCHAR(24),
-    [Location] NVARCHAR(70),  
+    [Location] NVARCHAR(70),
+    [DateCreated] DATETIME NOT NULL DEFAULT(GETDATE()),  
 ); 
---store & product  for inventory
 CREATE TABLE Inventory (
     [InventoryId] int IDENTITY(10, 1) Primary Key,
-    [ProductId] int FOREIGN KEY REFERENCES Product(ProductId),
-    [StoreId] int FOREIGN KEY REFERENCES Store(StoreId),
+    [ProductId_FK] int FOREIGN KEY REFERENCES Product(ProductId),
+    [StoreId_FK] int FOREIGN KEY REFERENCES Store(StoreId),
+    [Quantity] INT NOT NULL DEFAULT(1),
+    [DateCreated] DATETIME NOT NULL DEFAULT(GETDATE()),
 );
 
 CREATE TABLE Orders (
-    [OrderId] int IDENTITY(1, 1) Primary Key,
-    [CustomerId] int FOREIGN KEY REFERENCES Customer(CustomerId),
-    [ProductId] int FOREIGN KEY REFERENCES Product(ProductId),
-    [StoreId] int FOREIGN KEY REFERENCES Store(StoreId),
+    [LineItemId] int IDENTITY(1,1) Primary Key, 
+    [OrderId] UNIQUEIDENTIFIER NOT NULL,
+    [CustomerId_FK] int NOT NULL FOREIGN KEY REFERENCES Customer(CustomerId),
+    [ProductId_FK] int NOT NULL FOREIGN KEY REFERENCES Product(ProductId),
+    [StoreId_FK] int NOT NULL FOREIGN KEY REFERENCES Store(StoreId),
+    [Price] decimal (4,2) NOT NULL,
+    [DateCreated] DATETIME NOT NULL DEFAULT(GETDATE()),
 );
 
 
 ALTER TABLE OrderHistory
 ADD FOREIGN KEY (StoreID) REFERENCES Store(StoreID);
  [StoreId] int FOREIGN KEY REFERENCES Store(StoreId),
--- CREATE TABLE Order_History (
---     [Order_HistoryId] int Primary Key,
---     [OrderId] int FOREIGN KEY REFERENCES Order(OrderId),
---     [OrderDate] DATETIME NOT NULL,
---     [Total] INT NOT NULL,
--- );
--- CREATE TABLE Deleted_Cart (
---     [Deleted_cartId] int Primary Key,
---     [ProductId] int FOREIGN KEY REFERENCES Product(ProductId),
---     [OrderDate] DATETIME NOT NULL,
---     [Total] INT NOT NULL,
--- );
+
 --Create Procedures
 CREATE PROCEDURE Customer_GetOrder
 AS

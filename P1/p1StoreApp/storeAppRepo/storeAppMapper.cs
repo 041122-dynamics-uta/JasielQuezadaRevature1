@@ -23,20 +23,23 @@ namespace storeAppRepo
             Inventory I = new Inventory
             {
                 InventoryId = (int) read[0],
-                ProductId = (int) read[1],
-                Store Store = (Store) read[2],
+                Dictionary<Product> = (int) read[1],
+                Store = (Store) read[2],
+                Quantity = (int) read [3],
         
             };
             return I;
         }
-        Guid Orders DboToOrders(SqlDataReader read)
+        public Orders DboToOrders(SqlDataReader read)
         {
             Orders or = new Orders
             {
-                OrdersId = (int) read[0],
-                CustomerId = (int) read[1],
-                ProductId = (int) read[2],
-                StoreId = (int) read[2],    
+                LineItemId = (int) read[0],
+                OrdersId = (Guid) read[1],
+                Customer = (Customer) read[2],
+                Dictionary = (Product) read[3],
+                Store = (Store) read[4],
+                Price = (decimal) read[5],   
             };
             return or;
         }
@@ -46,9 +49,9 @@ namespace storeAppRepo
             Product p = new Product
             {
                 ProductId = (int) read[0],
-                Name = (string) read[1],
+                ProductName = (string) read[1],
                 Description = (string) read[2],
-                UnitPrice = (int) read[3], 
+                Price = (Decimal) read[3], 
                 Quantity = (int) read[4], 
             };
             return p;
