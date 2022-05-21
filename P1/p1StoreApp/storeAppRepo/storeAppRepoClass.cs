@@ -1,41 +1,40 @@
 ﻿using System.Data.SqlClient;
 using storeAppModel;
 
-
-
 namespace storeAppRepo;
 public class storeAppRepoClass
 {
     public storeAppMapper mapper { get; set; }
-    string connectionstring = "Server=tcp:jasielquezadaserver.database.windows.net,1433;Initial Catalog=JasielQuezadaSales;Persist Security Info=False;User ID=JasielQuezadaDB;Password=HorseShoe2;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+    string connectionstring = "Server=tcp:jasielquezadaserver.database.windows.net,1433;Initial Catalog=JasielQuezadastoreApp;Persist Security Info=False;User ID=JasielQuezadaDB;Password=HorseShoe2;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
 public storeAppRepoClass()
 {
     this.mapper = new storeAppMapper();
-}
-public List<Inventory> InventoryList()
+}//end of mapper definer
+public bool emailpwdexists(string Email, string Password)
     {
-    string myQuery2 = "SELECT * FROM Inventory";
-
-    using (SqlConnection query2 = new SqlConnection(connectionstring))
+        string myquery = "SELECT * FROM Customer WHERE Email = '@e' AND Password = '@pw'";
+        using (SqlConnection con = new SqlConnection(connectionstring))
     {
-         SqlCommand command = new SqlCommand(myQuery2, query2);
-    //command.Connection.Open(); 
-        query2.Open();
-        SqlDataReader results = command.ExecuteReader(); 
-        List<Inventory> I = new List<Inventory>();
-
-        while (results.Read())
-        {
-            I.Add(this.mapper.DboToInventory(results));
-        }
-
-        query2.Close();
-        return I;  
+    SqlCommand command = new SqlCommand(myquery, con);
+    command.Parameters.AddWithValue("@e", Email);
+    command.Parameters.AddWithValue("@p", Password);
+    command.Connection.Open(); 
+    SqlDataReader results = command.ExecuteReader(); 
+    
+    if (results.Read()){
+        con.Close();
+        return true;       
+    }   
+    else
+    {
+        con.Close();
+        return false;
     }
-  }
-  
-public Customer newCustomer(string FirstName, string LastName, string address, string email, string password)
+ }
+}//end
+public Customer? newCustomer(string FirstName, string LastName, string Address, string Email, string Password)
+    
     {
     string myQuery1 = "INSERT INTO Customer(FirstName, LastName, address, email, password) VALUES(@f, @l, @a, @e, @p)";
     using (SqlConnection query1 = new SqlConnection(connectionstring))
@@ -43,147 +42,164 @@ public Customer newCustomer(string FirstName, string LastName, string address, s
     SqlCommand command = new SqlCommand(myQuery1, query1);
     command.Parameters.AddWithValue("@f", FirstName);
     command.Parameters.AddWithValue("@l", LastName);
-    command.Parameters.AddWithValue("@a", address);
-    command.Parameters.AddWithValue("@e", email);
-    command.Parameters.AddWithValue("@p", password);
+    command.Parameters.AddWithValue("@a", Address);
+    command.Parameters.AddWithValue("@e", Email);
+    command.Parameters.AddWithValue("@p", Password);
     command.Connection.Open(); //open the connection to the DB
-    int results = command.ExecuteNonQuery(); //do the query
+    SqlDataReader results1 = command.ExecuteReader(); //do the query
     query1.Close();
 
-    if (results == 1){
-        Customer c = new Customer
-        {
-            CustomerId = 1,
-            FirstName =FirstName,
-            LastName = LastName,
-            Address = address,
-            Email = email,
-            Password = password,
-        };
-        return c;       
-    }    
-    //return null; 
- }
-}//Public list end
-    public Orders newOrders(int CustomerId, int ProductId, int Total)
+    if (results1.Read())
     {
-    string myQuery3 = "INSERT INTO Orders(CustomerId, ProductId, Total) VALUES(@ci, @pi, @t";
+        Customer c = this.mapper.DboToCustomer(results1);
+        query1.Close();
+        return c;
+    } 
+    else
+    {
+        query1.Close();
+        return null; 
+    }          
+    } 
+     
+}//end
+
+public List<Customer> CustomerList()
+    {
+   string myQuery2 = "SELECT * FROM Customer WHERE Email = @e AND Password = @p";
+    using (SqlConnection query2 = new SqlConnection(connectionstring))
+    {
+     SqlCommand command = new SqlCommand(myQuery2, query2);
+     query2.Open(); 
+     SqlDataReader results2 = command.ExecuteReader(); 
+
+        List<Customer> c = new List<Customer>();
+        while (results2.Read())
+        { 
+            c.Add(this.mapper.DboToCustomer(results2));
+        }
+        query2.Close();
+        return c;   
+    }  
+ }
+//  public Customer CustomerLogin(string Email, string Password)
+//     {
+//     string myQuery2 = "SELECT * FROM Customer WHERE Email = @e AND Password = @p";
+//     using (SqlConnection query2 = new SqlConnection(connectionstring))
+//     {
+//     SqlCommand command = new SqlCommand(myQuery2, query2);
+//     command.Parameters.AddWithValue("@e", Email);
+//     command.Parameters.AddWithValue("@p", Password);
+//     command.Connection.Open(); 
+//     SqlDataReader results2 = command.ExecuteReader(); 
+
+//     if (results2.Read()){
+//         Customer c = this.mapper.DboToCustomer(results2);
+//         query2.Close();
+//         return c;       
+//     }  
+//     else{
+//         query2.Close();
+//         return null;
+//     }  
+//  }
+// }//Public list end
+ public List<Store> StoreList()
+    {
+    //string connectionstring = "Server=tcp:jasielquezadaserver.database.windows.net,1433;Initial Catalog=JasielQuezadastoreApp;Persist Security Info=False;User ID=JasielQuezadaDB;Password=HorseShoe2;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+    string myQuery3 = "SELECT * FROM Store";
     using (SqlConnection query3 = new SqlConnection(connectionstring))
     {
     SqlCommand command = new SqlCommand(myQuery3, query3);
-    command.Parameters.AddWithValue("@ci", CustomerId);
-    command.Parameters.AddWithValue("@pi", ProductId);
-    command.Parameters.AddWithValue("@t", Total);
+    query3.Open(); 
+    SqlDataReader results3 = command.ExecuteReader(); 
+
+        List<Store> s = new List<Store>();
+        while (results3.Read())
+        { 
+            s.Add(this.mapper.DboToStore(results3));
+        }
+        query3.Close();
+        return s;   
+    }
+}//endofclass
+ public List<Product> ProductList()
+    {
+    string myQuery4 = "SELECT * FROM Product";
+    using (SqlConnection query4 = new SqlConnection(connectionstring))
+    {
+    SqlCommand command = new SqlCommand(myQuery4, query4);
+    query4.Open();
+    //command.Connection.Open(); 
+    SqlDataReader results4 = command.ExecuteReader(); 
+
+        List<Product> p = new List<Product>();
+        while (results4.Read())
+        {
+            p.Add(this.mapper.DboToProduct(results4));
+        }
+        query4.Close();
+        return p;   
+    }
+  }
+//orders
+public Orders newOrders(int LineItemId, Guid OrdersId, int CustomerId_FK, int ProductId_FK, int StoreId_FK, int Total)
+    {
+    string myQuery5 = "INSERT INTO Orders(LineItemId, OrdersId, CustomerId_FK, ProductId_FK, StoreId_FK, Total) VALUES(@li, @o, @ci, @pi, @s, @t";
+    using (SqlConnection query5 = new SqlConnection(connectionstring))
+    {
+    SqlCommand command = new SqlCommand(myQuery5, query5);
+    command.Parameters.AddWithValue("@li", LineItemId);
+    command.Parameters.AddWithValue("@o", OrdersId);
+    command.Parameters.AddWithValue("@ci", CustomerId_FK);
+    command.Parameters.AddWithValue("@p", ProductId_FK);
+    command.Parameters.AddWithValue("@s", StoreId_FK);
+    command.Parameters.AddWithValue("@pr", Total);
     command.Connection.Open(); 
     int results = command.ExecuteNonQuery();
-    query3.Close();
+    query5.Close();
 
          if (results == 1){
         Orders or = new Orders
         {
-            OrdersId = 0,
-            CustomerId = CustomerId,
-            ProductId = ProductId,
-            Total = 0,
-            
+            LineItemId = LineItemId,
+            OrdersId = OrdersId,
+            CustomerId_FK = CustomerId_FK,
+            ProductId_FK = ProductId_FK,
+            StoreId_FK = StoreId_FK,
+            Total = 0,   
         };
         return or;     
     }
     return null;
   }
-    List<Order_History> Order_HistoryList()
-    {
-    string myQuery4 = "SELECT * FROM Order_History";
-
-    using (SqlConnection query4 = new SqlConnection(connectionstring))
-    {
-    SqlCommand command = new SqlCommand(myQuery4, query4);
-    command.Connection.Open(); 
-    SqlDataReader results = command.ExecuteReader(); 
-
-        List<Order_History> oh = new List<Order_History>();
-        while (results.Read())
-        {
-            oh.Add(this.mapper.DboToOrder_History(results));
-        }
-
-        query4.Close();
-        return oh;  
     }
-  }
-    }
-//     Product newProduct(int StoreId, string Name, string Color, string Size, string Description, int UnitPrice, int Quantity)
+//    public Orders SubmitOrder()
 //     {
-//     string myQuery4 = "INSERT INTO Product(StoreId, Name, Color, Size, Description, UnitPrice, Quantity) VALUES(@s, @n, @s, @d, @up, @q";
-//     using (SqlConnection query4 = new SqlConnection(connectionstring))
-//     {
-//     SqlCommand command = new SqlCommand(myQuery4, query4);
-//     command.Parameters.AddWithValue("@s", StoreId);
-//     command.Parameters.AddWithValue("@n", Name);
-//     command.Parameters.AddWithValue("@c", Color);
-//     command.Parameters.AddWithValue("@s", Size);
-//     command.Parameters.AddWithValue("@d", Description);
-//     command.Parameters.AddWithValue("@up", UnitPrice);
-//     command.Parameters.AddWithValue("@q", Quantity);
-//     command.Connection.Open(); 
-//     int results = command.ExecuteNonQuery();
-//     query4.Close();
 
-//          if (results == 1){
-//         Product p = new Product
-//         {
-//             ProductId = 0,
-//             StoreId = StoreId,
-//             Name = Name,
-//             Color = Color,
-//             Size = Size,
-//             Description = Description,
-//             UnitPrice = UnitPrice,
-//             Quantity = Quantity,
-//         };
-//         return p;     
 //     }
-//     return null;
-//   }
-    //}
-    public List<Product> ProductList();
+    
+//inventory
+  public List<Inventory> InventoryList()
     {
-    string myQuery5 = "SELECT * FROM Product";
+    string myQuery7 = "SELECT * FROM Inventory";
+    using (SqlConnection query7 = new SqlConnection(connectionstring))
+          {
+        SqlCommand command = new SqlCommand(myQuery7, query7); 
+        query7.Open();
+        SqlDataReader results7 = command.ExecuteReader();
 
-    using (SqlConnection query5 = new SqlConnection(connectionstring))
-    {
-    SqlCommand command = new SqlCommand(myQuery5, query5);
-    command.Connection.Open(); 
-    SqlDataReader results = command.ExecuteReader(); 
-
-        List<Product> p = new List<Product>();
-        while (results.Read())
+        List<Inventory> I = new List<Inventory>();
+        while (results7.Read())
         {
-            p.Add(this.mapper.DboToProduct(results));
+            I.Add(this.mapper.DboToInventory(results7));
         }
-        query5.Close();
-        return p;   
-    }
-    return null;
-  }
-  List<Store> StoreList()
-    {
-    string myQuery6 = "SELECT * FROM Store";
-
-    using (SqlConnection query6 = new SqlConnection(connectionstring))
-    {
-    SqlCommand command = new SqlCommand(myQuery6, query6);
-    command.Connection.Open(); 
-    SqlDataReader results = command.ExecuteReader(); 
-
-        List<Store> s = new List<Store>();
-        while (results.Read())
-        {
-            s.Add(this.mapper.DboToStore(results));
+        query7.Close();
+        return I;  
         }
-        query6.Close();
-        return s;   
     }
-}//endofclass
-}
+  
+ }//end of the whole thing
+
+   
 

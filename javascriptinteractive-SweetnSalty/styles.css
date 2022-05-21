@@ -1,1 +1,17 @@
-#more {display: none;}
+body {
+    background: linear-gradient(to right, rgb(255, 132, 132), pink , violet, rgb(146, 146, 253));
+    color: black;
+    font-size: 15pt;
+    font-weight: bold;
+    font-family: Monaco, Consolas, 'Lucida Console';
+        }
+#play{
+    font-family: 'Copperplate', Fantasy;
+    font-size: 24pt;
+    font-weight: 300;
+    text-align: center; 
+        }
+h1{
+    font-family: 'Monaco', monospace;
+}
+

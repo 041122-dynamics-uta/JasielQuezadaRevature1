@@ -6,34 +6,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styles.css">
     <title>Sweet And Salty</title>
-    <style>
-        p1{
+<style>
+    
+    #step1 {display: none;}
+    #step2 {display: none;}
+    .errormessage {color: red;}
+    
 
-        }
-    </style>
+</style>
 </head>
 <body>
-     <script src="sweetnsalty.js"></script>
-     <p>Welcome To Sweet’nSalty Game!</p><br>
-     <div>How To Play The Game:<br>
-        1) Enter your starting number. Then click Enter<br>
-        2) Enter your ending number. Then click Enter<br>
-        3) For every number that is a multiple of 3 SWEET will show instead.<br>
-        4) For every number that is a multiple of 5 SALTY will show instead.<br>
-        5) For every number that is a multiple of both Sweet’nSalty will show instead.<br> 
-        6) Lastly we will add up the total of each shown words and let you know how many of each you got ! <br>
-        Press Enter to start the game !
-     </div>
-     <input type="button" value="ENTER">
-     
+    <h1 id="header">Welcome To Sweet’nSalty Game!</h1><br>
+    <h1 id="play">How To Play The Game:</h1><br>
+    <p>1) Enter your starting number. Then click Enter<br>
+    2) Enter your ending number. Then click Enter<br>
+    3) For every number that is a multiple of 3 SWEET will show instead.<br>
+    4) For every number that is a multiple of 5 SALTY will show instead.<br>
+    5) For every number that is a multiple of both Sweet’nSalty will show instead.<br> 
+    6) Lastly we will add up the total of all the words shown and let you know how many of each you got !</p><br>
+    <h1 id="start">PRESS ENTER TO START THE GAME !</h1>
+    <p id="rules" style="display:none"></p>
+    <button type="button" id="entergame" onclick="entergame()">Enter</button>
 
-     <p1>Step 1: Enter your starting number. Then click Enter</p1>.  
-     <div3>Step 2: Enter your ending number. Then click Enter </div3> 
-       
-     
-     
+<form id="step1">
+     <h1 id="stepone">Step 1: Enter your starting number.</h1>
+     <input type="number" name="num1" id="num1">
+     <button type="button" id="enter1" onclick="enter1()">Enter</button>
+     <div class="errormessage" id="error1"></div>
+</form>
+<form id="step2">
+    <h1>Step 2: Enter your ending number</h1>
+    <input type="number" name="num2" id="num2">
+    <button type="button" id="enter2" value="Enter a number" onclick="enter2()"></button>
+    <div class="errormessage" id="err2"></div>
+</form>
+</form>
+<form id="step3">
+    <h3 id ="calc">Press Submit To Calculate</h3>
+    <label></label>
+    <input type="hidden" id="start1">
+    <button type="button" id="enter3" onclick="calcFunc()">Submit</button>
+    <div class="errormessage" id="error3"></div>
+    
+</form>
+
+<div id="answer"></div>
+<div id="finalcount"></div>
+
+<form type="reset" id="reset">
+    
+</form>   
+        
+<script src="sweetnsalty.js"></script>   
 </body>
 </html>
+
+<!--<button onclick="enter()">Enter</button>
+     <p id="button"></p>
+     <button type="button" id="button" onclick="update()">Submit</button>-->
 
 <!--Start with a screen that explains the game and how the user will input their choices.   
 Each step is visible only after the previous step has been successfully completed. 
