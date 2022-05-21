@@ -18,7 +18,7 @@ CREATE TABLE Product (
     [ProductId] int IDENTITY(1, 1) Primary Key,
     [ProductName] NVARCHAR(200) NOT NULL,
     [Description] NVARCHAR(300),
-    [Price] DECIMAL[5,2] NOT NULL,
+    [UnitPrice] DECIMAL(5,2) NOT NULL,
     [Quantity] INT NOT NULL DEFAULT(1),
     [DateCreated] DATETIME NOT NULL DEFAULT(GETDATE()),
 );
@@ -42,7 +42,7 @@ CREATE TABLE Orders (
     [CustomerId_FK] int NOT NULL FOREIGN KEY REFERENCES Customer(CustomerId),
     [ProductId_FK] int NOT NULL FOREIGN KEY REFERENCES Product(ProductId),
     [StoreId_FK] int NOT NULL FOREIGN KEY REFERENCES Store(StoreId),
-    [Price] decimal (4,2) NOT NULL,
+    [Total] decimal (4,2) NOT NULL,
     [DateCreated] DATETIME NOT NULL DEFAULT(GETDATE()),
 );
 

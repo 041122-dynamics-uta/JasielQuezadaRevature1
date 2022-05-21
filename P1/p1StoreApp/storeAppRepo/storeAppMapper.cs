@@ -23,8 +23,8 @@ namespace storeAppRepo
             Inventory I = new Inventory
             {
                 InventoryId = (int) read[0],
-                Dictionary<Product> = (int) read[1],
-                Store = (Store) read[2],
+                ProductId_FK = (int) read[1],
+                StoreId_FK = (int) read[2],
                 Quantity = (int) read [3],
         
             };
@@ -34,12 +34,13 @@ namespace storeAppRepo
         {
             Orders or = new Orders
             {
+                
                 LineItemId = (int) read[0],
                 OrdersId = (Guid) read[1],
-                Customer = (Customer) read[2],
-                Dictionary = (Product) read[3],
-                Store = (Store) read[4],
-                Price = (decimal) read[5],   
+                CustomerId_FK = (int) read[2],
+                ProductId_FK = (int) read[3],
+                StoreId_FK = (int) read[4],
+                Total = (decimal) read[5],   
             };
             return or;
         }
@@ -51,7 +52,7 @@ namespace storeAppRepo
                 ProductId = (int) read[0],
                 ProductName = (string) read[1],
                 Description = (string) read[2],
-                Price = (Decimal) read[3], 
+                UnitPrice = (Decimal) read[3], 
                 Quantity = (int) read[4], 
             };
             return p;

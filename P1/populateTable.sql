@@ -13,55 +13,55 @@ VALUES ('John', 'Gordon', '69 Salem Street, Boston, MA, USA', 'johngordon22@yaho
 
 
 --STORE INSERTS (2)
-INSERT INTO Store ([StoreID], [Name], [Location]) 
-VALUES(10, 'Marvel Merch Avenue', 'Atlanta, Georgia');
-INSERT INTO Store ([StoreID], [Name], [Location]) 
-VALUES(20, 'Marvel Merch Street', 'Los Angeles, California');
+INSERT INTO Store ([Name], [Location]) 
+VALUES('Marvel Merch Avenue', 'Atlanta, Georgia');
+INSERT INTO Store ([Name], [Location]) 
+VALUES('Marvel Merch Street', 'Los Angeles, California');
 
 --PRODUCT INSERTS (10) atl store
-INSERT INTO Product ([Name], [Description], [UnitPrice], [Quantity]) 
+INSERT INTO Product ([ProductName], [Description], [UnitPrice], [Quantity]) 
 VALUES('WandaVison T-Shirt', 'Black WandaVision screen printed cotton T-shirt one size', 15, 20);
-INSERT INTO Product ([Name], [Description], [UnitPrice], [Quantity]) 
+INSERT INTO Product ([ProductName], [Description], [UnitPrice], [Quantity]) 
 VALUES('Loki T-Shirt','Black Loki screen printed cotton T-shirt one size', 15, 20);
-INSERT INTO Product ([Name], [Description], [UnitPrice], [Quantity]) 
+INSERT INTO Product (Product[Name], [Description], [UnitPrice], [Quantity]) 
 VALUES('Hulk Gloves','Green Hulk Smash Play Gloves Large', 15, 20);
-INSERT INTO Product ([Name], [Description], [UnitPrice], [Quantity]) 
+INSERT INTO Product ([ProductName], [Description], [UnitPrice], [Quantity]) 
 VALUES('Iron Man Helmet','Light-Up Iron Man helmet with voice activated Jarvis responces custom size ', 400, 20);
-INSERT INTO Product ([Name], [Description], [UnitPrice], [Quantity]) 
+INSERT INTO Product ([ProductName], [Description], [UnitPrice], [Quantity]) 
 VALUES('Thor Pajamas','Two piece top and pants pajama set One Size', 15, 20);
 --LA Store
-INSERT INTO Product ([Name], [Description], [UnitPrice], [Quantity]) 
+INSERT INTO Product ([ProductName], [Description], [UnitPrice], [Quantity]) 
 VALUES('WandaVison T-Shirt', 'Black WandaVision screen printed cotton T-shirt one size', 20, 20);
-INSERT INTO Product ([Name], [Description], [UnitPrice], [Quantity]) 
+INSERT INTO Product ([ProductName], [Description], [UnitPrice], [Quantity]) 
 VALUES('Loki T-Shirt','Black Loki screen printed cotton T-shirt one size', 20, 20);
-INSERT INTO Product ([Name], [Description], [UnitPrice], [Quantity]) 
+INSERT INTO Product ([ProductName], [Description], [UnitPrice], [Quantity]) 
 VALUES('Hulk Gloves','Green Hulk Smash Play Gloves Large', 20, 20);
-INSERT INTO Product ([Name], [Description], [UnitPrice], [Quantity]) 
+INSERT INTO Product ([ProductName], [Description], [UnitPrice], [Quantity]) 
 VALUES('Iron Man Helmet','Light-Up Iron Man helmet with voice activated Jarvis responces custom size ', 500, 20);
-INSERT INTO Product ([Name], [Description], [UnitPrice], [Quantity]) 
+INSERT INTO Product ([ProdcutName], [Description], [UnitPrice], [Quantity]) 
 VALUES('Thor Pajamas','Two piece top and pants pajama set One Size', 20, 20);
 
 
 - Orders INSERTS (11)
-INSERT INTO Orders ([CustomerId], [ProductId], [OrderDate],[Total]) 
+INSERT INTO Orders ([CustomerId_FK], [ProductId_FK], [StoreId_FK],[Total]) 
 VALUES (36, 2, '2022/5/5', 17.98);
-INSERT INTO Orders ([CustomerId], [ProductId], [OrderDate], [Total]) 
+INSERT INTO Orders ([CustomerId_FK], [ProductId_FK], [StoreId_FK], [Total]) 
 VALUES (38, 3, '2022/5/6', 35.96);
-INSERT INTO Orders ([CustomerId], [ProductId],  [OrderDate], [Total]) 
+INSERT INTO Orders ([CustomerId_FK], [ProductId_FK],  [StoreId_FK], [Total]) 
 VALUES (15, 3, '2022/6/5', 17.98);
-INSERT INTO Orders ([CustomerId], [ProductId], [OrderDate], [Total]) 
+INSERT INTO Orders ([CustomerId_FK], [ProductId_FK], [StoreId_FK], [Total]) 
 VALUES (27, 9, '2022/6/10', 550.91);
-INSERT INTO Orders ([CustomerId], [ProductId], [OrderDate], [Total]) 
+INSERT INTO Orders ([CustomerId_FK], [ProductId_FK], [StoreId_FK], [Total]) 
 VALUES (55, 6, '2022/7/7', 35.96);
-INSERT INTO Orders ([CustomerId], [ProductId], [OrderDate], [Total]) 
+INSERT INTO Orders ([CustomerId_FK], [ProductId_FK], [StoreId_FK], [Total]) 
 VALUES (23, 7, '2022/9/11', 80.91);
-INSERT INTO Orders ([CustomerId], [ProductId], [OrderDate], [Total]) 
+INSERT INTO Orders ([CustomerId_FK], [ProductId_FK], [StoreId_FK], [Total]) 
 VALUES (26, 10, '2022/11/7', 400.98);  
-INSERT INTO Orders ([CustomerId], [ProductId], [OrderDate], [Total]) 
+INSERT INTO Orders ([CustomerId_FK], [ProductId_FK], [StoreId_FK], [Total]) 
 VALUES (28, 11, '2022/11/7', 60.98);
-INSERT INTO Orders ([CustomerId], [ProductId], [OrderDate], [Total]) 
+INSERT INTO Orders ([CustomerId_FK], [ProductId_FK], [StoreId_FK], [Total]) 
 VALUES (28, 10,  '2022/11/7', 55.98);
-INSERT INTO Orders ([CustomerId], [ProductId], [OrderDate], [Total]) 
+INSERT INTO Orders ([CustomerId_FK], [ProductId_FK], [StoreId_FK], [Total]) 
 VALUES (47, 8, '2022/1/9', 400.96);
-INSERT INTO Orders ([CustomerId], [ProductId], [OrderDate],  [Total]) 
+INSERT INTO Orders ([CustomerId_FK], [ProductId_FK], [StoreId_FK],  [Total]) 
 VALUES (24, 11, '2010/3/21', 150.86);
