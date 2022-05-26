@@ -1,0 +1,18 @@
+ISMATCH: 
+
+IsMatch is a form of Match that is used to validate what a user has typed in a Text Input control. IsMatch matches the entire text string (Complete MatchOption), while Match and MatchAll search for a match anywhere in the text string (Contains MatchOption).  IsMatch returns true if the text string matches the pattern or false if it doesn't. 
+
+SYNTAX 
+
+If(IsMatch(DataCardValue14.Text,  
+          "^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$" 
+   ), 
+   SubmitForm(EditForm1), 
+   Notify("Email not valid", NotificationType.Error) 
+) 
+
+*Only need if statement if you have more than one argument. 
+
+*Use the OnSelect function 
+
+*Inside the [ ] mean a-z lowercase, A-Z uppercase and 0-9 can be in each word plus the symbols. 
